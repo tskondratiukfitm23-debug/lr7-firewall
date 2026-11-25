@@ -36,7 +36,7 @@ python3 tests/test_firewall.py                   # або: python3 -m pytest -q
 
 ```
                ┌────────────────────────── firewall.py ──────────────────────────┐
- клієнт ──TCP──▶ TCP Proxy :8080,8082-8085 ─┐                                      │──▶ echo 9000,9002-9005
+ клієнт ──TCP──▶ TCP Proxy :8086,8082-8085 ─┐                                      │──▶ echo 9000,9002-9005
  клієнт ──UDP──▶ UDP Relay :5353 ───────────┼─▶ RuleEngine (RuleSet.decide) ──allow─│──▶ echo 9001
                │                            │        │ deny → close/drop          │
  адмін ──HTTP──▶ Admin API :8081 ──add/patch/delete/reload──▶ RuleSet (lock)       │
