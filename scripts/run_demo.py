@@ -22,7 +22,10 @@ def api(method, path, body=None):
         return json.loads(e.read() or b'{}')
 
 
-def tcp(port=8080, msg=b'hello'):
+MAIN_PORT = 8086          # проксі → echo 9000 (8080 часто зайнятий nginx)
+
+
+def tcp(port=MAIN_PORT, msg=b'hello'):
     """True — з'єднання пройшло (отримали echo), False — відхилено."""
     try:
         with socket.create_connection(('127.0.0.1', port), timeout=3) as s:
@@ -118,10 +121,10 @@ def main():
     api('DELETE', f'/rules/{u["id"]}')
 
     scan = api('POST', '/rules', rule(dst_port=0, priority=1, comment='deny all TCP'))
-    res = [tcp(p) for p in (8080, 8082, 8083, 8084, 8085)]
+    res = [tcp(p) for p in (MAIN_PORT, 8082, 8083, 8084, 8085)]
     check('S11', 'deny all TCP + «сканування» 5 портів → усі відхилені', not any(res))
     for _ in range(12):
-        tcp(8080)
+        tcp(MAIN_PORT)
     check('S12', 'Серія з 12 відхилених спроб (для аналізатора)', True)
     api('DELETE', f'/rules/{scan["id"]}')
 

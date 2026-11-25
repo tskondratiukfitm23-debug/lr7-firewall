@@ -7,7 +7,7 @@
     "path": "logs/events.jsonl"
   },
   "services": [
-    {"proto": "TCP", "listen_host": "127.0.0.1", "listen_port": 8080, "target_host": "127.0.0.1", "target_port": 9000},
+    {"proto": "TCP", "listen_host": "127.0.0.1", "listen_port": 8086, "target_host": "127.0.0.1", "target_port": 9000},
     {"proto": "TCP", "listen_host": "127.0.0.1", "listen_port": 8082, "target_host": "127.0.0.1", "target_port": 9002},
     {"proto": "TCP", "listen_host": "127.0.0.1", "listen_port": 8083, "target_host": "127.0.0.1", "target_port": 9003},
     {"proto": "TCP", "listen_host": "127.0.0.1", "listen_port": 8084, "target_host": "127.0.0.1", "target_port": 9004},
